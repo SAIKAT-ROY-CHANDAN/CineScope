@@ -4,12 +4,23 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
+  tagTypes: ['movies'],
   endpoints: (builder) => ({
     getMovies: builder.query({
       query: () => ({
         url: "/movies",
         method: "GET",
       }),
+      providesTags: ['movies']
+    }),
+    addRating: builder.mutation({
+      query: ({ data, slug }) => {
+        return {
+          method: 'POST',
+          url: `/movies/${slug}/review`
+        }
+      },
+      invalidatesTags: ['movies']
     }),
     getSingleMovie: builder.query({
       query: (slug) => ({
@@ -63,8 +74,9 @@ export const baseApi = createApi({
 
 export const {
   useGetMoviesQuery,
+  useAddRatingMutation,
   useGetSingleMovieQuery,
   useAddMoviesMutation,
   useGetMovieReviewsQuery,
-  useGetMovieDetailsAndReviewsQuery, 
+  useGetMovieDetailsAndReviewsQuery,
 } = baseApi;
