@@ -13,7 +13,7 @@ export default function Movies() {
     );
   return (
     <div className="container mx-auto">
-      <div className="grid md:grid-cols-4 sm:grid-cols-1 gap-4 mx-auto my-5">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:grid-cols-1 gap-4 mx-auto my-5">
         {movies?.data?.map((movie: TMovie) => (
           <MovieCard key={movie?._id} movie={movie} />
         ))}
