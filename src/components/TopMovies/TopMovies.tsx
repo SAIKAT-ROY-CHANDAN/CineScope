@@ -4,7 +4,7 @@ import { MovieCard } from "../MovieCard/MovieCard";
 
 const TopMovies = () => {
   const { data: movies, isLoading } = useGetMoviesQuery({});
-  // console.log(movies);
+
   if (isLoading)
     return (
       <p className="text-3xl text-center text-yellow-500 my-2 font-bold">
